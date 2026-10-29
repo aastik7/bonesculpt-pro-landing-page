@@ -27,9 +27,19 @@ Keep the off-white paper, orange accent and real product media. Explanatory copy
 
 Wrap enlarged metadata and controls instead of shrinking them. The brush guide uses two columns on phones and control-table inputs wrap. The edition comparison keeps 16px cells / 14px details: on phones, each feature sits above two edition values so Standard and PRO stay in view together. Intermediate widths retain the labeled keyboard-focusable scroll region. Verify 320px and 390px widths after typography changes, then regenerate the standalone export. Embedded Blender UI in authentic media retains its source size; the interface image links to the full-size capture.
 
+Included edition features have a green circular check and the visible label “Included”. Missing Standard features retain a muted dash and “Not included”, so the comparison does not rely on color alone. There are 13 inclusion checks and three unavailable entries; brush counts and Blender requirements remain explicit values.
+
 ## Media contract / owner handoff
 
-The owner supplies these **real product media** files. This implementation does not create, replace or download the video assets:
+The hero now uses `bonesculpt-stroke-guide.mp4`: a new, native Blender 5.0.1 capture of the current 0.13.0 Grab brush on a nine-bone chain. The original brush methods operate on real pose bones with scripted screen-space input. The white radius circle is the add-on's original overlay; the center cross, input trail, labels, and holds are editorial annotations. This verifies source-driven brush output, not manual modal event handling. The original add-on file is unchanged.
+
+`bonesculpt-collision-guide.mp4` and `bonesculpt-onion-guide.mp4` are focused, annotated edits of the official listing's existing animations. Collision identifies the pink collider and bone chains; it is not a controlled on/off test or a promise of intersection-free meshes. Onion skin distinguishes the current pose from neighboring-frame mesh ghosts without asserting a fixed ghost-color mapping. These source animations can show an earlier interface.
+
+All three guides are 1200 × 1320, 6.4 seconds, H.264/yuv420p, muted, with faststart. Each has a matching animated `.webp` and a static `-poster.webp`. Native players use the real 10:11 aspect ratio. Every authored video annotation is at least 66 px at source width 1200 px, or 15.125 px at the measured minimum 275 px player width. Animated image versions are explicit links; the page never loads them automatically. The original posing clip remains as an additional example. Existing video controls, pause behavior, reduced-motion handling, and fallback stills continue to apply.
+
+Capture/build scripts and exact source hashes, output metrics, original asset URLs, phase captions, and review frames are in `../media-work/bonesculpt-explainers/manifest.json` and `../media-work/scripts/bonesculpt_explainers_*`. Preserve the original media below for source provenance.
+
+The following **original product media** files are retained alongside the new guided edits:
 
 | Required path | Purpose |
 | --- | --- |
@@ -43,7 +53,7 @@ The owner supplies these **real product media** files. This implementation does 
 | `dist/media/onion-poster.webp` | Static frame from `onion.mp4` |
 | `dist/media/interface.webp` | Current Blender interface still; supplied by this implementation |
 
-The media panels use a 2:1 stage, matching the available listing animations, with `object-fit: contain` so controls and rig content are not cropped. Other aspect ratios are letterboxed. Use browser-compatible MP4 (for example H.264 with yuv420p). There is no audio-dependent copy. The page notes that older demos may show an earlier UI; current requirements come from the local docs.
+The original posing example uses a 2:1 stage. Guided clips use their native 10:11 stage; `object-fit: contain` preserves the footage and instructional labels. Use browser-compatible MP4 (for example H.264 with yuv420p). There is no audio-dependent copy. The page notes that older demos may show an earlier UI; current requirements come from the local docs.
 
 Available real source assets were inspected in `../media-work/bonesculpt-assets`, including `contact-sheet-public.jpg` and `01-gallery.webp`. The owner's converted `hero`, `sculpt`, `collision` and `onion` videos arrived during implementation and are referenced directly. The comparison clip under the brush field guide is explicitly labeled as the collision workflow. Brush selection changes the field guide text only, not the video. `brushes.mp4` is not required; `result.mp4` is also not used.
 
@@ -63,7 +73,7 @@ If a video fails to load, its panel displays the actual current interface screen
 npm run export:standalone
 ```
 
-Creates `dist/bonesculpt-pro-standalone.html` with CSS, JavaScript, the actual interface screenshot and available video posters embedded. Missing posters use the interface still. **Videos remain relative** under `./media/`. Keep the export beside the media directory, or copy the videos with the HTML. Do not expect a single HTML file to contain the videos. Use `node build-standalone.mjs --check` to validate generation without writing the generated file.
+Creates `dist/bonesculpt-pro-standalone.html` with CSS, JavaScript, the actual interface screenshot, static video posters, and the three explicitly linked animated WebP guides embedded. The builder validates every required guided MP4, animated WebP, and static poster before replacing the export. Missing posters use the interface still. **Videos remain relative** under `./media/`. Keep the export beside the media directory, or copy the videos with the HTML. Do not expect a single HTML file to contain the videos. Use `node build-standalone.mjs --check` to validate generation without writing the generated file.
 
 ## Checks
 
@@ -84,7 +94,7 @@ Purchase and support destination: https://superhivemarket.com/products/bonesculp
 
 Public page: https://aastik7.github.io/bonesculpt-pro-landing-page/
 
-The refreshed text was checked at 320, 390, 650, 651, 768, and 1280 px, including expanded FAQs: minimum authored text size 14 px, sufficient text contrast on solid backgrounds, and no page-level horizontal overflow. The mobile edition comparison fits both values without sideways scrolling. The iframe snippet starts at 17000 px high to allow for the larger type. Default-FAQ embed measurements range from about 11300 px on desktop to 16900 px at 320 px; 390 px is about 15300 px. Adjust the height for the actual Superhive listing width and expanded FAQs; normal iframe scrolling remains available.
+The refreshed text was checked at 320, 390, 650, 651, 768, and 1280 px, including expanded FAQs: minimum authored text size 14 px, sufficient text contrast on solid backgrounds, and no page-level horizontal overflow. The mobile edition comparison fits both values without sideways scrolling. The iframe snippet starts at 18000 px high for the taller guided clips. Final default-FAQ embed measurements range from about 12800 px on desktop to 17800 px at 320 px; 390 px is about 16100 px. Adjust the height for the actual Superhive listing width and expanded FAQs; normal iframe scrolling remains available.
 Superhive version: https://aastik7.github.io/bonesculpt-pro-landing-page/?embed=1
 
 The GitHub Pages workflow in `.github/workflows/pages.yml` publishes `dist/`. Changes to `dist/` on `main` deploy automatically. You can also run the workflow manually from GitHub Actions.
@@ -92,3 +102,8 @@ The GitHub Pages workflow in `.github/workflows/pages.yml` publishes `dist/`. Ch
 Paste `superhive-embed.html` into the product description's HTML/code view. Its height is a starting value: preview on desktop and phone and adjust it for your listing. Keep Superhive's separate documentation/FAQ fields complete.
 
 Final local validation: desktop/mobile layout, native video metadata/playback, all media and section references, brush selector, FAQ, mobile menu, global pause and embed mode. The source videos come from the creator's existing public listing; the current interface image is a new native Blender 5.0.1 capture of version 0.13.0. See `dist/media/media-sources.json` for provenance.
+
+
+The media loading path waits for real errors rather than treating an initial NETWORK_NO_SOURCE state as a permanent failure. Successful metadata restores the playable video and hides its fallback. Browser checks cover real decode/seek, forced error followed by metadata recovery, and playback/visibility/reduced-motion scenarios with controlled browser hooks.
+
+Optional direct About fragments: `superhive-video-clips.html` uses controllable MP4 players with static posters; `superhive-image-clips.html` uses animated WebP images without pause controls. Both use only tags and attributes listed in https://support.superhivemarket.com/article/280-customizing-your-content. The existing full-page iframe remains the preferred complete description. No Superhive account editor was changed.

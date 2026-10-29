@@ -101,11 +101,20 @@
     mediaObserver?.unobserve(video);
     updateMotionButton();
   };
+  const restoreVideo = (video) => {
+    const frame = video.closest('[data-media-frame]');
+    unavailableVideos.delete(video);
+    availableVideos.add(video);
+    video.hidden = false;
+    frame?.querySelector('.media-fallback')?.setAttribute('hidden', '');
+    frame?.querySelector('.media-unavailable')?.setAttribute('hidden', '');
+    mediaObserver?.observe(video);
+    updateMotionButton();
+  };
   videos.forEach((video) => {
     video.muted = true;
     video.addEventListener('loadedmetadata', () => {
-      availableVideos.add(video);
-      updateMotionButton();
+      restoreVideo(video);
       playAutomatically(video);
     });
     video.addEventListener('pause', () => {
@@ -120,8 +129,10 @@
     const posterProbe = new Image();
     posterProbe.onerror = () => { video.poster = './media/interface.webp'; };
     posterProbe.src = video.poster;
-    if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) showFallback(video);
-    else if (video.readyState >= HTMLMediaElement.HAVE_METADATA) availableVideos.add(video);
+    // NETWORK_NO_SOURCE can be transient while the parser starts loading a source.
+    // Real error events above trigger the fallback; successful metadata restores it.
+    if (video.error) showFallback(video);
+    else if (video.readyState >= HTMLMediaElement.HAVE_METADATA) restoreVideo(video);
   });
   if ('IntersectionObserver' in window) {
     mediaObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
