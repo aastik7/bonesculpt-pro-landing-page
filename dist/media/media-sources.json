@@ -1,0 +1,68 @@
+[
+  {
+    "name": "hero",
+    "source_url": "https://assets.superhivemarket.com/store/product/266012/image/xlarge-b5d57372f720239176b0f172ecbd7f4b.webp",
+    "source_file": "01-gallery.webp",
+    "width": 1200,
+    "height": 600,
+    "duration_seconds": 24.0,
+    "frames": 600,
+    "bytes": 3465229,
+    "method": "Original listing animation decoded and encoded as a muted H.264 video. No feature behavior synthesized."
+  },
+  {
+    "name": "sculpt",
+    "source_url": "https://assets.superhivemarket.com/store/productimage/1369210/image/xlarge-8d44daa271e0fc66d16922f7e3f39309.webp",
+    "source_file": "03-gallery.webp",
+    "width": 1200,
+    "height": 600,
+    "duration_seconds": 6.3,
+    "frames": 158,
+    "bytes": 409621,
+    "method": "Original listing animation decoded and encoded as a muted H.264 video. No feature behavior synthesized."
+  },
+  {
+    "name": "collision",
+    "source_url": "https://assets.superhivemarket.com/store/productimage/1361428/image/xlarge-4aa8d09591c1f466cd9e90aa16ee3287.webp",
+    "source_file": "02-gallery.webp",
+    "width": 1200,
+    "height": 600,
+    "duration_seconds": 19.2,
+    "frames": 480,
+    "bytes": 2675574,
+    "method": "Original listing animation decoded and encoded as a muted H.264 video. No feature behavior synthesized."
+  },
+  {
+    "name": "onion",
+    "source_url": "https://assets.superhivemarket.com/store/productimage/1361448/image/xlarge-d2847715ca00ad131afbf5cf18058623.webp",
+    "source_file": "05-gallery.webp",
+    "width": 1200,
+    "height": 600,
+    "duration_seconds": 9.8,
+    "frames": 245,
+    "bytes": 1860868,
+    "method": "Original listing animation decoded and encoded as a muted H.264 video. No feature behavior synthesized."
+  },
+  {
+    "name": "result",
+    "source_url": "https://assets.superhivemarket.com/store/productimage/1369211/image/xlarge-37e4a3c449c3ed226e6acde41b08103e.webp",
+    "source_file": "04-gallery.webp",
+    "width": 1200,
+    "height": 600,
+    "duration_seconds": 7.2,
+    "frames": 180,
+    "bytes": 458942,
+    "method": "Original listing animation decoded and encoded as a muted H.264 video. No feature behavior synthesized."
+  },
+  {
+    "name": "interface",
+    "source": "Native Blender screen.screenshot_area capture",
+    "addon_version": "0.13.0",
+    "blender_version": "5.0.1",
+    "dimensions": [
+      1170,
+      780
+    ],
+    "notes": "Disposable posed 27-bone chain scene. Crop of real interface; no synthesized UI."
+  }
+]
