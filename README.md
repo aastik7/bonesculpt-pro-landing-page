@@ -21,6 +21,12 @@ Open `http://127.0.0.1:5174`. Set `PORT` to use another port. The preview binds 
 - `server.mjs`: dependency-free local static server.
 - `build-standalone.mjs`: optional single-HTML export.
 
+## Typography
+
+Keep the off-white paper, orange accent and real product media. Explanatory copy uses `--text: 18px` on desktop and `16px` through 650px, with a 1.7 line height. Every authored secondary label, caption, metadata item, keyboard shortcut and footnote has a 14px minimum, including responsive rules and generated content. Hero type caps at 88px and uses 44px on phones; section headings use 40–52px desktop and 34–39px mobile.
+
+Wrap enlarged metadata and controls instead of shrinking them. The brush guide uses two columns on phones and control-table inputs wrap. The edition comparison keeps 16px cells / 14px details: on phones, each feature sits above two edition values so Standard and PRO stay in view together. Intermediate widths retain the labeled keyboard-focusable scroll region. Verify 320px and 390px widths after typography changes, then regenerate the standalone export. Embedded Blender UI in authentic media retains its source size; the interface image links to the full-size capture.
+
 ## Media contract / owner handoff
 
 The owner supplies these **real product media** files. This implementation does not create, replace or download the video assets:
@@ -47,7 +53,7 @@ If a video fails to load, its panel displays the actual current interface screen
 
 - Native video controls, muted looping inline playback. Videos autoplay only through JavaScript when in view and reduced motion is off. Offscreen/hidden-tab playback pauses. Native manual pauses are respected; “Pause demos” pauses all videos. Reduced-motion visitors start with motion paused and can explicitly choose playback.
 - Native FAQ `details`/`summary`, keyboard-accessible brush explanation buttons and a polite text update region.
-- Mobile navigation supports its toggle, Escape, link selection and outside clicks. The comparison table scrolls on narrow screens.
+- Mobile navigation supports its toggle, Escape, link selection and outside clicks. The comparison table uses paired edition values on phones and a scroll region at intermediate widths.
 - `?embed=1` hides the site header, promotional purchase links and the closing purchase section. Internal navigation and seller-support links remain available. The same query works on the standalone export.
 - Without JavaScript, the content, native FAQ and media controls remain usable, and a text summary covers all nine brushes.
 
@@ -66,7 +72,7 @@ npm run check
 node build-standalone.mjs --check
 ```
 
-The implementation handoff passed Node syntax checks, dry-run export, HTML local-asset/anchor/ARIA-reference checks and an in-memory local-server check covering HEAD, video byte ranges, invalid ranges, missing files and traversal rejection. No test files were added. Desktop/mobile visual QA and final media verification belong to the owner. No publication or changes to hosting configuration are performed by this implementation.
+The implementation handoff passed Node syntax checks, dry-run export, HTML local-asset/anchor/ARIA-reference checks and an in-memory local-server check covering HEAD, video byte ranges, invalid ranges, missing files and traversal rejection. No test files were added. The typography pass additionally audits rendered text, keyboard shortcuts and generated labels at desktop and narrow phone widths. Final publication and embed-height measurements belong to the owner. No hosting configuration is changed by this implementation.
 
 ## Product copy sources
 
@@ -77,6 +83,8 @@ Purchase and support destination: https://superhivemarket.com/products/bonesculp
 ## Public hosting and Superhive
 
 Public page: https://aastik7.github.io/bonesculpt-pro-landing-page/
+
+The refreshed text was checked at 320, 390, 650, 651, 768, and 1280 px, including expanded FAQs: minimum authored text size 14 px, sufficient text contrast on solid backgrounds, and no page-level horizontal overflow. The mobile edition comparison fits both values without sideways scrolling. The iframe snippet starts at 17000 px high to allow for the larger type. Default-FAQ embed measurements range from about 11300 px on desktop to 16900 px at 320 px; 390 px is about 15300 px. Adjust the height for the actual Superhive listing width and expanded FAQs; normal iframe scrolling remains available.
 Superhive version: https://aastik7.github.io/bonesculpt-pro-landing-page/?embed=1
 
 The GitHub Pages workflow in `.github/workflows/pages.yml` publishes `dist/`. Changes to `dist/` on `main` deploy automatically. You can also run the workflow manually from GitHub Actions.
