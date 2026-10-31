@@ -18,9 +18,9 @@ const [html, css, js, interfaceImage] = await Promise.all([
   readFile(new URL('app.js', dist), 'utf8'),
   readFile(new URL('media/interface.webp', dist)),
 ]);
-const cssTag = '<link rel="stylesheet" href="./styles.css">';
-const jsTag = '<script src="./app.js" defer></script>';
-if (!html.includes(cssTag) || !html.includes(jsTag)) throw new Error('Expected page stylesheet/script tags were not found.');
+const cssTag = /<link rel="stylesheet" href="\.\/styles\.css(?:\?[^"<>]*)?">/;
+const jsTag = /<script src="\.\/app\.js(?:\?[^"<>]*)?" defer><\/script>/;
+if (!cssTag.test(html) || !jsTag.test(html)) throw new Error('Expected page stylesheet/script tags were not found.');
 for (const stem of guides) {
   for (const suffix of ['.mp4', '.webp', '-poster.webp']) {
     if (!html.includes(stem + suffix)) throw new Error(`Guided media is not referenced by the page: ${stem + suffix}`);

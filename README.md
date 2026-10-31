@@ -26,9 +26,11 @@ The deployable directory is `dist/`. Its HTML, CSS and JavaScript are the source
 
 Use near-black `#101218`, orange `#ff6b2b` purchase panels, cyan `#5ee8ed` feature fields and lime `#d5ff59` badges/checks. Keep the existing authentic media. No gradients, decorative blobs or repeated feature-card grid.
 
-The hero shows the original wide `hero.mp4`, a prominent **$14.99 PRO regular price (USD)**, and **Get PRO on Superhive**. Standard's regular price is **$4.99 USD**. These are owner-confirmed regular/list prices, not live sale prices. Link to **Current offers on Superhive** instead of hardcoding discounts. Purchase links open the confirmed product URL in a new tab with `noopener noreferrer`:
+The hero shows the original wide `hero.mp4`, a prominent **$14.99 PRO regular price (USD)**, and **Get BoneSculpt PRO**. Standard's regular price is **$4.99 USD**. These are verified regular/list prices, not live sale prices. Link to **Current offers on Superhive** instead of hardcoding discounts. Primary purchase links use `target="_top"` and the verified PRO variant and native seat controls:
 
-https://superhivemarket.com/products/bonesculptpro
+https://superhivemarket.com/products/bonesculptpro?variant=23625#cart_item_quantity_266012
+
+This selects PRO and brings Superhive’s native Add to cart area into view. It does not silently add an item. Superhive rejected a tokenless cross-origin cart POST with HTTP 422, and no supported public direct-add link or messaging bridge was found. Never embed a buyer’s session CSRF token, invent a cart endpoint, or put seller/API secrets in the page. An official supported checkout link can replace the destination when available. Support and current-offer links still open the regular listing separately.
 
 Keep purchase CTAs at the start, in the selected demo and at the bottom. **`?embed=1` hides only the redundant site navigation; it retains every purchase CTA, price and the bottom purchase panel.** The standalone export follows the same behavior.
 
@@ -59,11 +61,12 @@ Native MP4 controls and static posters are mandatory. Animated WebP versions are
 
 ## Interaction and accessibility
 
-- The three scene tabs use selected state, roving focus, arrow keys, Home and End. Changing scenes pauses the outgoing player. Only the selected scene is displayed. With JavaScript off, all three native players and their captions remain available.
+- The three scene tabs use selected state, roving focus, arrow keys, Home and End. They rotate **Brush posing → Mesh collision → Onion skin** every five seconds, with a 2px cyan elapsed-time fill beneath the active button. Clicking a tab (including the active one) or selecting it with the keyboard resets the five seconds. Focus remaining on a clicked tab does not stop rotation. Changing scenes pauses the outgoing player. Only the selected scene is displayed. With JavaScript off, all three native players and their captions remain available.
 - Videos loop muted and inline. JavaScript only starts visible demos when reduced motion is off. Offscreen/hidden-document playback pauses; native manual pauses persist. **Pause demos** stops all players; **Play demos** explicitly resumes visible demos. Reduced-motion visitors start paused and can use native controls or explicitly enable playback.
+- **Pause demos / Play demos** also controls scene rotation, even when videos are unavailable. Rotation starts paused for reduced motion until explicit Play, and waits while the demo section is offscreen, the document is hidden or video/document fullscreen is active. These pauses freeze the fill and preserve the remaining time.
 - Actual video/source errors show the real interface still and an honest unavailable message. Do not use an initial `NETWORK_NO_SOURCE` state as an error: it can occur before source loading starts. Successful metadata restores a playable video and hides the fallback, including after an earlier error.
 - Missing posters fall back to the real interface image. No fake Blender scenes or empty demo panels.
-- Navigation needs no menu script. Native `details`/`summary`, visible focus, a skip link and textual inclusion labels remain keyboard accessible.
+- Navigation needs no menu script. Help sections start closed and share a native `details` name so only one opens at a time. A JavaScript attribute-observer fallback preserves the latest opening on browsers without named-details support, including rapid/coalesced changes. Native `details`/`summary`, visible focus, a skip link and textual inclusion labels remain keyboard accessible.
 
 ## Standalone HTML contract
 

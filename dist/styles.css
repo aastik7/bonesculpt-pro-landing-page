@@ -72,9 +72,10 @@ h3 { font-size: 40px; }
 .section-heading .eyebrow { margin-bottom: 12px; color: var(--muted); }
 .section-heading > p { color: var(--muted); font-size: 16px; }
 .scene-tabs { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 16px; border-bottom: 1px solid var(--line); }
-.scene-tabs button { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px 12px; border: 0; border-bottom: 3px solid transparent; color: var(--paper); background: transparent; font-weight: 700; font-size: 16px; }
+.scene-tabs button { position: relative; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px 12px; border: 0; border-bottom: 3px solid transparent; color: var(--paper); background: transparent; font-weight: 700; font-size: 16px; }
+.scene-tabs button::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; background: var(--cyan); transform: scaleX(var(--scene-progress, 0)); transform-origin: left; pointer-events: none; }
 .scene-tabs button > span { font-size: 14px; color: var(--muted); }
-.scene-tabs button[aria-selected="true"] { color: var(--cyan); border-color: var(--cyan); background: #1d2028; }
+.scene-tabs button[aria-selected="true"] { color: var(--cyan); background: #1d2028; }
 .scene-tabs button[aria-selected="true"] > span { color: var(--cyan); }
 .scene-tabs button:hover { background: #272a33; }
 .scene-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr); background: var(--cyan); color: var(--ink); }
